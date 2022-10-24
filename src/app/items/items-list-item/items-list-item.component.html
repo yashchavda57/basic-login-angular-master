@@ -1,4 +1,4 @@
-<li class="list-group-item" style="margin-bottom:10px;" *ngIf="item">
+<li class="list-group-item" style="margin-bottom:10px;" *ngIf="item && item.is_delete != true">
   <Strong>{{ item.title }}</Strong>
   <hr>
   {{ item.description }}

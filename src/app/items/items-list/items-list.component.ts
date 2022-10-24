@@ -45,6 +45,8 @@ export class ItemsListComponent implements OnInit {
     if(localStorage.getItem('listOfTodos') === null){
       let listOfItems = this.items$.value.toLocaleString()
       localStorage.setItem('listOfTodos',listOfItems)
+      console.log(this.items$);
+
     }
   }
 

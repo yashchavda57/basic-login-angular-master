@@ -40,11 +40,12 @@ export class ItemsService {
     return (index1 >= 0 && currentItems[index1]) ? currentItems[index1] : null;
   }
 
-  delete(id: number): Observable<any> {
-    return this.http.delete(environment['apiBaseUrl'] + '/api/item/' + id)
+  delete(id: number, item:ItemModel): Observable<any> {
+    item['is_delete']='TRUE'
+    return this.http.post(environment['apiBaseUrl'] + 'api/v1/accounts/todos/update_data/', item)
       .pipe(
         map(data => {
-            return (data['success'] && data['success'] === true) ? true : false;
+            return (data && data == 'Updated Successfully') ? true : false;
           }
         ),
         tap((success) => { if (success) { this.deleteItem(id); }}), // when success, delete the item from the local service
